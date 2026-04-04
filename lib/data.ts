@@ -1,40 +1,3 @@
-export const graphData: Array<{
-  id: number;
-  currentHeight?: string;
-  previousHeight?: string;
-}> = [
-  {
-    id: 1,
-    currentHeight: "50px",
-    previousHeight: "38px",
-  },
-  {
-    id: 2,
-    currentHeight: "101px",
-    previousHeight: "67px",
-  },
-  {
-    id: 3,
-    currentHeight: "122px",
-    previousHeight: "92px",
-  },
-  {
-    id: 4,
-    currentHeight: "85px",
-    previousHeight: "44px",
-  },
-  {
-    id: 5,
-    currentHeight: "50px",
-    previousHeight: "31px",
-  },
-  {
-    id: 6,
-    currentHeight: "106px",
-    previousHeight: "80px",
-  },
-];
-
 export const transition = { duration: 0, ease: [0, 0, 0, 0] };
 export const variants = {
   hidden: { transform: "translateY(0)", opacity: 1 },
@@ -50,134 +13,123 @@ export const FAQData: {
   description: string;
 }[] = [
   {
-    title: "What is the purpose of this website?",
+    title: "How long does the quiz take?",
     description:
-      "Welcome to our website, where we aim to provide you with the best products and services. Our purpose is to make your life easier, by offering you a wide range of products that you can use to improve your daily life. We strive to provide you with the best quality products, at the best prices, and with the best customer service. We believe that our website is the best place for you to find what you need, and we are committed to making sure that you have a great experience while shopping with us.",
+      "The Wheel of Wellbeing quiz takes about 3-5 minutes to complete. It consists of 40 questions across 8 areas of your life, and you'll see your results immediately after finishing.",
   },
   {
-    title: "How do i contact support?",
+    title: "What are the 8 spokes of wellbeing?",
     description:
-      "If you have any questions or need any help, please don't hesitate to contact us. We have a dedicated team of customer support specialists who are ready to assist you with any questions or concerns you may have. You can reach us by phone, email, or through our website's contact form. We are available 24/7 to help you with any issue you may have.",
+      "The 8 spokes are Physical, Mental, Emotional, Relational, Financial, Professional, Spiritual, and Environmental wellbeing. Together, they form a complete picture of your life balance.",
   },
   {
-    title: "How do I find the best products?",
+    title: "Is the quiz really free?",
     description:
-      "Finding the best products can be a challenge, but we are here to help. We have a team of experts who carefully curate our products to ensure that they are of the highest quality and meet our high standards. We also have a detailed product description, customer reviews, and product ratings to help you make an informed decision. If you still have any questions, feel free to contact us and we will be happy to help you.",
+      "Yes! The quiz and your wheel visualization are completely free. You'll see your scores across all 8 areas and get a summary of your strengths and growth areas. The optional paid roadmap goes deeper with personalized action steps.",
   },
   {
-    title: "Can I return a product?",
+    title: "What's in the personalized roadmap?",
     description:
-      "Yes, you can return a product. We want you to be completely satisfied with your purchase, and if for any reason you are not, you can return it to us within 30 days of delivery. Please see our return policy for more details.",
+      "The roadmap includes a deep dive into each of your 8 areas, personalized action steps based on your specific answers, cross-area insights, weekly exercises designed by a licensed therapist, and a 30-day priority plan.",
   },
   {
-    title: "Do you offer international shipping?",
+    title: "Who created the Wheel of Wellbeing?",
     description:
-      "Yes, we offer international shipping. We understand that our customers are located all over the world, and we want to make sure that we can reach them. We have a network of shipping partners that allow us to ship to almost any country in the world. Please see our shipping policy for more details.",
+      "The Wheel of Wellbeing was developed by Dr. Sadigh, a Licensed Marriage and Family Therapist, drawing on years of clinical experience helping people achieve greater life balance and fulfillment.",
   },
   {
-    title: "How can I track my order?",
+    title: "Can I retake the quiz?",
     description:
-      "Once your order has shipped, you will receive an email with tracking information. You can use this information to track your order and see when it will arrive. If you have any questions or concerns about your order, please don't hesitate to contact us.",
+      "Absolutely! Your wellbeing is always evolving. We encourage you to retake the quiz periodically to track your progress and see how your wheel changes over time.",
   },
 ];
 
-// World Map data
-export const WorldMapDotsData = [
+export const spokes = [
   {
-    start: {
-      lat: 60.2008,
-      lng: -149.4937,
-    },
-    end: {
-      lat: -21.7975,
-      lng: -60.8919,
-    },
+    name: "Physical",
+    description: "Your body, energy, sleep, and physical health",
+    color: "#E57373",
+    icon: "heart-pulse",
   },
   {
-    start: { lat: 60.2008, lng: -149.4937 },
-    end: { lat: 75.7975, lng: -42.8919 },
+    name: "Mental",
+    description: "Your focus, clarity, learning, and cognitive health",
+    color: "#64B5F6",
+    icon: "brain",
   },
   {
-    start: { lat: -21.7975, lng: -60.8919 },
-    end: { lat: 4.7223, lng: 16.1393 },
+    name: "Emotional",
+    description: "Your self-awareness, resilience, and emotional regulation",
+    color: "#FFB74D",
+    icon: "smile",
   },
   {
-    start: {
-      lat: 70.7975,
-      lng: -42.8919,
-    },
-    end: {
-      lat: 4.7223,
-      lng: 16.1393,
-    },
+    name: "Relational",
+    description: "Your relationships, connection, and social support",
+    color: "#F06292",
+    icon: "users",
   },
   {
-    start: {
-      lat: 65.5074,
-      lng: 100.1278,
-    },
-    end: {
-      lat: 75.7975,
-      lng: -42.8919,
-    },
+    name: "Financial",
+    description: "Your financial stability, habits, and security",
+    color: "#81C784",
+    icon: "wallet",
   },
   {
-    start: {
-      lat: 4.7223,
-      lng: 16.1393,
-    },
-    end: {
-      lat: 65.5074,
-      lng: 100.1278,
-    },
+    name: "Professional",
+    description: "Your career fulfillment, growth, and purpose at work",
+    color: "#9575CD",
+    icon: "briefcase",
   },
   {
-    start: {
-      lat: 10.5074,
-      lng: 95.1278,
-    },
-    end: {
-      lat: 4.7223,
-      lng: 16.1393,
-    },
+    name: "Spiritual",
+    description: "Your sense of meaning, values, and inner peace",
+    color: "#4DB6AC",
+    icon: "sparkles",
+  },
+  {
+    name: "Environmental",
+    description: "Your physical spaces, nature connection, and surroundings",
+    color: "#A1887F",
+    icon: "leaf",
   },
 ];
 
-export const WorldMapAvatarsData = [
+export const testimonials = [
   {
-    lat: 60.2008,
-    lng: -149.4937,
-    url: "/assets/avatar/avatar1.png",
-    size: 20,
+    quote:
+      "I was shocked to see how unbalanced my life had become. The wheel made it so clear — I was pouring everything into work and neglecting my relationships. The roadmap gave me a concrete plan to fix that.",
+    name: "Sarah M.",
+    role: "Marketing Director",
   },
   {
-    lat: -21.7975,
-    lng: -60.8919,
-    url: "/assets/avatar/avatar2.png",
-    size: 26,
+    quote:
+      "This quiz helped me understand why I was feeling so unfulfilled despite having a great career. My spiritual and emotional scores were much lower than I expected.",
+    name: "James K.",
+    role: "Software Engineer",
   },
   {
-    lat: 75.7975,
-    lng: -42.8919,
-    url: "/assets/avatar/avatar3.png",
-    size: 28,
+    quote:
+      "I've done personality tests before, but nothing that looked at my whole life this way. The visual wheel was eye-opening. I could literally see where I was off balance.",
+    name: "Priya R.",
+    role: "Graduate Student",
   },
   {
-    lat: 4.7223,
-    lng: 16.1393,
-    url: "/assets/avatar/avatar4.png",
-    size: 30,
+    quote:
+      "The personalized roadmap was worth every penny. It wasn't generic advice — it was based on MY specific answers and gave me weekly steps I could actually follow.",
+    name: "Michael T.",
+    role: "Small Business Owner",
   },
   {
-    lat: 65.5074,
-    lng: 100.1278,
-    url: "/assets/avatar/avatar5.png",
-    size: 35,
+    quote:
+      "I took the quiz with my partner and we compared wheels. It sparked the most productive conversation we've had about our life together in years.",
+    name: "Emily & David L.",
+    role: "Married Couple",
   },
   {
-    lat: 10.5074,
-    lng: 95.1278,
-    url: "/assets/avatar/avatar6.png",
-    size: 19,
+    quote:
+      "As a therapist myself, I appreciate the rigor behind this assessment. It's grounded in real clinical frameworks, not pop psychology. I recommend it to my clients.",
+    name: "Dr. Anna W.",
+    role: "Clinical Psychologist",
   },
 ];

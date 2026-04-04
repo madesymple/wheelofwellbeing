@@ -7,36 +7,44 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import IconBoxHero from "./cards/iconBoxHero";
 import { FAQData } from "@/lib/data";
+import { motion } from "motion/react";
 
 const FAQSection = () => {
   return (
-    <div className="w-full flex justify-center">
-      <div className="md:w-[80%] w-full flex flex-col items-center justify-center md:mt-48 mt-0">
-        <div className="w-full flex items-center justify-center">
-          <div>
-            <IconBoxHero className="rotate-[-15deg]" />
-          </div>
+    <div className="w-full flex justify-center my-16 md:my-24 px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="md:w-[80%] w-full flex flex-col items-center justify-center"
+      >
+        <div className="text-center mb-10">
+          <p className="text-brand font-semibold text-sm uppercase tracking-wider mb-3">
+            FAQ
+          </p>
+          <h2 className="md:text-4xl text-2xl font-heading font-bold text-foreground">
+            Frequently asked questions
+          </h2>
         </div>
-        <div className="font-bold text-xl mb-4 md:mb-0 md:text-7xl mt-16 md:leading-[78px] text-center">
-          Frequently asked questions
-        </div>
-        <div className="md:w-[80%] w-[90%] md:mt-20 mt-0">
+        <div className="md:w-[80%] w-full">
           <Accordion type="single" collapsible className="w-full">
             {FAQData.map((item, index) => (
               <div key={index}>
                 <AccordionItem value={`item-${index + 1}`}>
-                  <AccordionTrigger className="text-left">
+                  <AccordionTrigger className="text-left font-heading font-semibold">
                     {item.title}
                   </AccordionTrigger>
-                  <AccordionContent>{item.description}</AccordionContent>
+                  <AccordionContent className="text-neutral-600 leading-relaxed">
+                    {item.description}
+                  </AccordionContent>
                 </AccordionItem>
               </div>
             ))}
           </Accordion>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

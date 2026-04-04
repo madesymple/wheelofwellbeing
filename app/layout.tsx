@@ -1,13 +1,31 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Quicksand, Poppins } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({
+  subsets: ["latin"],
+  variable: "--font-quicksand",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Playful - Aceternity UI Pro Template",
+  title: "Wheel of Wellbeing — How Balanced Is Your Life?",
   description:
-    "A modern and playful template designed for SaaS and marketing websites.",
+    "Take the free Wheel of Wellbeing quiz to discover your life balance across 8 key areas. Get a personalized roadmap to improve your wellbeing, designed by a licensed therapist.",
+  openGraph: {
+    title: "Wheel of Wellbeing — How Balanced Is Your Life?",
+    description:
+      "Take the free quiz and discover your life balance across 8 key areas of wellbeing.",
+    siteName: "Wheel of Wellbeing",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -17,7 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body
+        className={`${quicksand.variable} ${poppins.variable} font-body antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

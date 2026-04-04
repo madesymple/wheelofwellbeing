@@ -3,37 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --background: #fafafa;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FDF8F0;
+  --foreground: #1A1A2E;
 }
 
 body {
-  color: #171717;
-  background: #fafafa;
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground);
+  background: var(--background);
 }
 
-/* makeing scrollbar batter */
-
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f5e1c3;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #2A9D8F;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #1F7A6F;
 }
