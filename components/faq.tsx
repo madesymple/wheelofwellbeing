@@ -16,27 +16,29 @@ const FAQSection = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="md:w-[80%] w-full flex flex-col items-center justify-center"
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+        className="md:w-[70%] w-full flex flex-col items-center justify-center"
       >
-        <div className="text-center mb-10">
-          <p className="text-brand font-semibold text-sm uppercase tracking-wider mb-3">
+        <div className="text-center mb-12">
+          <p className="text-brand font-bold text-sm uppercase tracking-widest mb-3">
             FAQ
           </p>
-          <h2 className="md:text-4xl text-2xl font-heading font-bold text-foreground">
+          <h2 className="md:text-5xl text-2xl font-heading font-bold text-foreground">
             Frequently asked questions
           </h2>
         </div>
-        <div className="md:w-[80%] w-full">
+        <div className="w-full bg-white rounded-[28px] border border-neutral-100 p-6 md:p-10" style={{
+          boxShadow: "0px 4px 20px rgba(0,0,0,0.03), 0px 1px 3px rgba(0,0,0,0.05)",
+        }}>
           <Accordion type="single" collapsible className="w-full">
             {FAQData.map((item, index) => (
               <div key={index}>
                 <AccordionItem value={`item-${index + 1}`}>
-                  <AccordionTrigger className="text-left font-heading font-semibold">
+                  <AccordionTrigger className="text-left font-heading font-semibold text-foreground">
                     {item.title}
                   </AccordionTrigger>
-                  <AccordionContent className="text-neutral-600 leading-relaxed">
+                  <AccordionContent className="text-neutral-500 leading-relaxed">
                     {item.description}
                   </AccordionContent>
                 </AccordionItem>
