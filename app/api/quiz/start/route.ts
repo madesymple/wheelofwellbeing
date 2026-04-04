@@ -77,8 +77,10 @@ export async function POST(req: NextRequest) {
     });
   } catch (error) {
     console.error("Error starting quiz:", error);
+    const message =
+      error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Failed to start quiz" },
+      { error: "Failed to start quiz", details: message },
       { status: 500 }
     );
   }
