@@ -150,14 +150,29 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
 
         {/* Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl border border-neutral-200 p-6 text-center shadow-lg max-w-xs">
+          <div className="bg-white rounded-2xl border border-neutral-200 p-8 text-center shadow-lg max-w-sm">
             <Lock className="h-8 w-8 text-brand mx-auto mb-3" />
             <h3 className="font-heading font-bold text-lg text-foreground">
               Unlock Your Full Roadmap
             </h3>
-            <p className="text-neutral-500 text-sm mt-2">
+            <p className="text-neutral-500 text-sm mt-2 mb-5">
               Get your personalized action plan with specific steps for each
               area of your life.
+            </p>
+            <a href={`/checkout?session=${sessionId}`}>
+              <button
+                className="w-full flex items-center justify-center gap-2 h-12 rounded-xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-base font-bold text-white"
+                style={{
+                  boxShadow:
+                    "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
+                }}
+              >
+                Get My Roadmap — $47
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </a>
+            <p className="text-xs text-neutral-400 mt-3">
+              <span className="line-through">$97</span> $47 &middot; 100% money-back guarantee
             </p>
           </div>
         </div>
