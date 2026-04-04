@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-neutral-100 mt-10 pt-6 relative z-10">
-        <p className="text-neutral-300 text-sm text-center">
+        <p className="text-neutral-500 text-sm text-center">
           &copy; {new Date().getFullYear()} Wheel of Wellbeing. All rights
           reserved.
         </p>
