@@ -30,9 +30,7 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
     .sort((a, b) => (spokeScores[a] || 0) - (spokeScores[b] || 0));
 
   const lowest = sorted[0];
-  const secondLowest = sorted[1];
   const lowestMeta = SPOKE_META[lowest];
-  const secondLowestMeta = SPOKE_META[secondLowest];
 
   const faq = [
     {
@@ -64,31 +62,24 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
         className="text-center max-w-xl mx-auto"
       >
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground leading-tight">
-          Your{" "}
+          You scored{" "}
+          <span style={{ color: lowestMeta?.color }}>
+            {spokeScores[lowest]}/10
+          </span>{" "}
+          in{" "}
           <span style={{ color: lowestMeta?.color }}>
             {lowestMeta?.label}
-          </span>{" "}
-          is holding back your{" "}
-          <span style={{ color: secondLowestMeta?.color }}>
-            {secondLowestMeta?.label}
           </span>
-          .
+          . You can do better.
         </h2>
         <p className="text-neutral-500 mt-4 leading-relaxed">
-          You scored{" "}
-          <strong style={{ color: lowestMeta?.color }}>
-            {spokeScores[lowest]}/10
-          </strong>{" "}
-          in {lowestMeta?.label} and{" "}
-          <strong style={{ color: secondLowestMeta?.color }}>
-            {spokeScores[secondLowest]}/10
-          </strong>{" "}
-          in {secondLowestMeta?.label}. These areas are connected — improving one
-          creates a ripple effect across your entire wheel.
+          Your wheel shows exactly where you&apos;re thriving and where
+          there&apos;s room to grow. But knowing the score is just the first
+          step — the real question is what to do about it.
         </p>
         <p className="text-neutral-600 mt-3 font-medium">
-          Your personalized roadmap shows you exactly how to fix this — starting
-          this week.
+          Your personalized roadmap gives you a specific action plan for each
+          area — starting this week.
         </p>
       </motion.div>
 
@@ -151,9 +142,9 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
             Cross-Spoke Analysis
           </h3>
           <p className="text-neutral-600 text-sm leading-relaxed">
-            Your low score in {lowestMeta?.label} is silently affecting your{" "}
-            {secondLowestMeta?.label}. Here is how these areas interact and what
-            you can do to create a positive feedback loop between them...
+            Understanding how each area of your wellbeing connects to the others
+            is key to making lasting change. Here is how your scores interact
+            and where to focus first for maximum impact...
           </p>
         </div>
 
@@ -193,7 +184,7 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
             `Your #1 priority area and why fixing it first creates a cascade effect`,
             `Personalized action steps — not generic tips, based on YOUR specific answers`,
             `Weekly exercises designed by a licensed therapist (Dr. Sadigh, MFT)`,
-            `Cross-area insights — how your ${lowestMeta?.label} is silently affecting your ${secondLowestMeta?.label}`,
+            `Cross-area insights — how each area of your life connects to the others`,
             `Your 30-day roadmap — week by week, exactly what to focus on`,
           ].map((item, i) => (
             <div key={i} className="flex gap-3 items-start">
