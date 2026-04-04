@@ -26,8 +26,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL || "https://wheelofwellbeing.vercel.app";
+    const baseUrl = "https://wheelofwellbeing.vercel.app";
 
     // Create Stripe Checkout session
     const stripe = getStripe();
