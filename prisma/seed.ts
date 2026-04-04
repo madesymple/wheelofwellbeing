@@ -215,25 +215,6 @@ const questions = [
 async function main() {
   console.log("Seeding quiz questions...");
 
-  for (const q of questions) {
-    await prisma.quizQuestion.upsert({
-      where: {
-        id: undefined,
-      },
-      update: {},
-      create: {
-        spoke: q.spoke,
-        questionIndex: q.questionIndex,
-        text: q.text,
-        variantGroup: q.variantGroup,
-        weight: 1.0,
-        active: true,
-      },
-    });
-  }
-
-  // Use createMany for bulk insert (skip duplicates isn't available for upsert without unique)
-  // Clear and re-seed approach for simplicity
   const existing = await prisma.quizQuestion.count();
   if (existing === 0) {
     await prisma.quizQuestion.createMany({
