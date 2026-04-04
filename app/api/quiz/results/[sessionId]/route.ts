@@ -21,7 +21,6 @@ export async function GET(
 
     return NextResponse.json({
       spokeScores: result.spokeScores,
-      overallScore: Number(result.overallScore),
     });
   } catch (error) {
     console.error("Error fetching results:", error);

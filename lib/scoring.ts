@@ -32,8 +32,8 @@ export function calculateSpokeScore(answers: AnswerWithWeight[]): number {
   // Normalize to 1-10 scale
   const normalized = ((rawAverage - 1) / 6) * 9 + 1;
 
-  // Round to 1 decimal place
-  return Math.round(normalized * 10) / 10;
+  // Round to nearest whole number
+  return Math.round(normalized);
 }
 
 /**
@@ -63,18 +63,6 @@ export function calculateAllSpokeScores(
   return scores;
 }
 
-/**
- * Calculate overall balance score from spoke scores.
- * Currently a simple average — can be replaced with Dr. Sadigh's formula later.
- */
-export function calculateOverallScore(
-  spokeScores: Record<string, number>
-): number {
-  const values = Object.values(spokeScores);
-  if (values.length === 0) return 0;
-  const avg = values.reduce((sum, v) => sum + v, 0) / values.length;
-  return Math.round(avg * 10) / 10;
-}
 
 /**
  * Likert scale labels (7-point)

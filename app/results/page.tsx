@@ -6,10 +6,11 @@ import { motion } from "motion/react";
 import { SPOKE_META, SPOKE_ORDER } from "@/lib/scoring";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import WheelChart from "@/components/results/wheel-chart";
+import Paywall from "@/components/results/paywall";
 
 interface ResultData {
   spokeScores: Record<string, number>;
-  overallScore: number;
 }
 
 export default function ResultsPage() {
@@ -40,8 +41,6 @@ function ResultsContent() {
       return;
     }
 
-    // For now, fetch from the complete endpoint response stored in sessionStorage
-    // Later this will be a proper GET /api/quiz/results/[sessionId] endpoint
     const fetchResults = async () => {
       try {
         const res = await fetch(`/api/quiz/results/${sessionId}`);
@@ -89,13 +88,11 @@ function ResultsContent() {
     );
   }
 
-  // Sort spokes by the defined order
-  const sortedSpokes = SPOKE_ORDER.filter(
+  // Find highest and lowest spokes
+  const activeSpokes = SPOKE_ORDER.filter(
     (s) => result.spokeScores[s] != null
   );
-
-  // Find highest and lowest
-  const sorted = [...sortedSpokes].sort(
+  const sorted = [...activeSpokes].sort(
     (a, b) => result.spokeScores[b] - result.spokeScores[a]
   );
   const highest = sorted[0];
@@ -109,31 +106,35 @@ function ResultsContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-8"
         >
           <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
             Your Wheel of Wellbeing
           </h1>
-          <p className="text-neutral-500 mt-3">
-            Overall Balance Score:{" "}
-            <span className="font-bold text-brand text-lg">
-              {result.overallScore}/10
-            </span>
-          </p>
+        </motion.div>
+
+        {/* Wheel Chart */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-8"
+        >
+          <WheelChart spokeScores={result.spokeScores} />
         </motion.div>
 
         {/* Summary */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
           className="bg-white rounded-[24px] border border-neutral-100 p-6 md:p-8 mb-8"
           style={{
             boxShadow:
               "0px 4px 20px rgba(0,0,0,0.03), 0px 1px 3px rgba(0,0,0,0.05)",
           }}
         >
-          <p className="text-neutral-600 leading-relaxed">
+          <p className="text-neutral-600 leading-relaxed text-center">
             Your strongest area is{" "}
             <span
               className="font-bold"
@@ -153,9 +154,9 @@ function ResultsContent() {
           </p>
         </motion.div>
 
-        {/* Spoke scores */}
-        <div className="space-y-3">
-          {sortedSpokes.map((spoke, idx) => {
+        {/* Spoke score cards */}
+        <div className="space-y-3 mb-4">
+          {activeSpokes.map((spoke, idx) => {
             const meta = SPOKE_META[spoke];
             const score = result.spokeScores[spoke];
             const percentage = (score / 10) * 100;
@@ -165,7 +166,7 @@ function ResultsContent() {
                 key={spoke}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.3 + idx * 0.08 }}
+                transition={{ duration: 0.3, delay: 1 + idx * 0.08 }}
                 className="bg-white rounded-2xl border border-neutral-100 p-5"
                 style={{
                   boxShadow:
@@ -179,7 +180,9 @@ function ResultsContent() {
                   >
                     {meta?.label}
                   </span>
-                  <span className="font-bold text-foreground">{score}/10</span>
+                  <span className="font-bold text-foreground">
+                    {score}/10
+                  </span>
                 </div>
                 <div className="w-full h-3 bg-neutral-100 rounded-full overflow-hidden">
                   <motion.div
@@ -189,7 +192,7 @@ function ResultsContent() {
                     animate={{ width: `${percentage}%` }}
                     transition={{
                       duration: 0.8,
-                      delay: 0.5 + idx * 0.1,
+                      delay: 1.2 + idx * 0.1,
                       ease: "easeOut",
                     }}
                   />
@@ -199,16 +202,22 @@ function ResultsContent() {
           })}
         </div>
 
-        {/* CTA for retake */}
+        {/* Paywall / Upsell */}
+        <Paywall
+          spokeScores={result.spokeScores}
+          sessionId={sessionId || ""}
+        />
+
+        {/* Retake link */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="text-center mt-10"
+          transition={{ delay: 2 }}
+          className="text-center mt-8 pb-8"
         >
           <Link
             href="/quiz"
-            className="text-sm text-brand font-semibold hover:underline"
+            className="text-sm text-neutral-400 hover:text-brand transition-colors"
           >
             Take the quiz again
           </Link>

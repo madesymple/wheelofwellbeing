@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import {
-  calculateAllSpokeScores,
-  calculateOverallScore,
-} from "@/lib/scoring";
+import { calculateAllSpokeScores } from "@/lib/scoring";
 
 export async function POST(req: NextRequest) {
   try {
@@ -114,13 +111,11 @@ export async function POST(req: NextRequest) {
       }))
     );
 
-    const overallScore = calculateOverallScore(spokeScores);
-
     // Save results (upsert in case of resubmission)
     const result = await prisma.quizResult.upsert({
       where: { sessionId },
-      update: { spokeScores, overallScore },
-      create: { sessionId, spokeScores, overallScore },
+      update: { spokeScores, overallScore: 0 },
+      create: { sessionId, spokeScores, overallScore: 0 },
     });
 
     // Mark session as completed
@@ -133,7 +128,6 @@ export async function POST(req: NextRequest) {
       resultId: result.id,
       sessionId,
       spokeScores,
-      overallScore,
     });
   } catch (error) {
     console.error("Error completing quiz:", error);
