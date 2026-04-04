@@ -1,0 +1,146 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- Users ---
+
+model User {
+  id             String    @id @default(uuid()) @db.Uuid
+  email          String    @unique @db.VarChar(255)
+  firstName      String?   @db.VarChar(100)
+  dateOfBirth    DateTime? @db.Date
+  passwordHash   String?   @db.VarChar(255)
+  marketingOptIn Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  sessions  QuizSession[]
+  purchases Purchase[]
+
+  @@map("users")
+}
+
+// --- Quiz Questions ---
+
+model QuizQuestion {
+  id            String   @id @default(uuid()) @db.Uuid
+  spoke         String   @db.VarChar(50)
+  questionIndex Int
+  text          String
+  variantGroup  String?  @db.VarChar(50)
+  weight        Decimal  @default(1.0) @db.Decimal(3, 2)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  answers QuizAnswer[]
+
+  @@index([spoke, active])
+  @@index([variantGroup])
+  @@map("quiz_questions")
+}
+
+// --- Quiz Sessions ---
+
+enum SessionStatus {
+  in_progress
+  completed
+  abandoned
+}
+
+model QuizSession {
+  id               String        @id @default(uuid()) @db.Uuid
+  userId           String        @db.Uuid
+  status           SessionStatus @default(in_progress)
+  questionsVersion Json?
+  createdAt        DateTime      @default(now())
+  completedAt      DateTime?
+
+  user      User         @relation(fields: [userId], references: [id])
+  answers   QuizAnswer[]
+  result    QuizResult?
+  purchases Purchase[]
+  reports   Report[]
+
+  @@index([userId])
+  @@map("quiz_sessions")
+}
+
+// --- Quiz Answers ---
+
+model QuizAnswer {
+  id          String   @id @default(uuid()) @db.Uuid
+  sessionId   String   @db.Uuid
+  questionId  String   @db.Uuid
+  answerValue Int
+  createdAt   DateTime @default(now())
+
+  session  QuizSession  @relation(fields: [sessionId], references: [id])
+  question QuizQuestion @relation(fields: [questionId], references: [id])
+
+  @@unique([sessionId, questionId])
+  @@index([sessionId])
+  @@map("quiz_answers")
+}
+
+// --- Quiz Results ---
+
+model QuizResult {
+  id           String   @id @default(uuid()) @db.Uuid
+  sessionId    String   @unique @db.Uuid
+  spokeScores  Json
+  overallScore Decimal  @db.Decimal(3, 1)
+  createdAt    DateTime @default(now())
+
+  session QuizSession @relation(fields: [sessionId], references: [id])
+
+  @@map("quiz_results")
+}
+
+// --- Purchases ---
+
+enum PurchaseStatus {
+  pending
+  completed
+  refunded
+}
+
+model Purchase {
+  id                  String         @id @default(uuid()) @db.Uuid
+  userId              String         @db.Uuid
+  sessionId           String         @db.Uuid
+  stripeCheckoutId    String?        @db.VarChar(255)
+  stripePaymentIntent String?        @db.VarChar(255)
+  amountCents         Int
+  status              PurchaseStatus @default(pending)
+  createdAt           DateTime       @default(now())
+
+  user    User        @relation(fields: [userId], references: [id])
+  session QuizSession @relation(fields: [sessionId], references: [id])
+  report  Report?
+
+  @@index([userId])
+  @@index([stripeCheckoutId])
+  @@map("purchases")
+}
+
+// --- Reports ---
+
+model Report {
+  id          String   @id @default(uuid()) @db.Uuid
+  sessionId   String   @db.Uuid
+  purchaseId  String   @unique @db.Uuid
+  content     Json
+  accessToken String   @unique @db.VarChar(255)
+  generatedAt DateTime @default(now())
+
+  session  QuizSession @relation(fields: [sessionId], references: [id])
+  purchase Purchase    @relation(fields: [purchaseId], references: [id])
+
+  @@map("reports")
+}
