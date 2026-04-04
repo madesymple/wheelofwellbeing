@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { SPOKE_META, SPOKE_ORDER } from "@/lib/scoring";
 import {
@@ -24,7 +24,31 @@ interface PaywallProps {
 }
 
 const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
-  // Sort spokes by score to find lowest/second lowest
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  const handleCheckout = async () => {
+    if (checkoutLoading) return;
+    setCheckoutLoading(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
+      });
+      const data = await res.json();
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      } else {
+        alert("Something went wrong. Please try again.");
+        setCheckoutLoading(false);
+      }
+    } catch {
+      alert("Something went wrong. Please try again.");
+      setCheckoutLoading(false);
+    }
+  };
+
+  // Sort spokes by score to find lowest
   const sorted = [...SPOKE_ORDER]
     .filter((s) => spokeScores[s] != null)
     .sort((a, b) => (spokeScores[a] || 0) - (spokeScores[b] || 0));
@@ -159,18 +183,18 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
               Get your personalized action plan with specific steps for each
               area of your life.
             </p>
-            <a href={`/checkout?session=${sessionId}`}>
-              <button
-                className="w-full flex items-center justify-center gap-2 h-12 rounded-xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-base font-bold text-white"
-                style={{
-                  boxShadow:
-                    "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
-                }}
-              >
-                Get My Roadmap — $47
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </a>
+            <button
+              onClick={handleCheckout}
+              disabled={checkoutLoading}
+              className="w-full flex items-center justify-center gap-2 h-12 rounded-xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-base font-bold text-white disabled:opacity-60"
+              style={{
+                boxShadow:
+                  "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
+              }}
+            >
+              {checkoutLoading ? "Redirecting..." : "Get My Roadmap — $47"}
+              {!checkoutLoading && <ArrowRight className="h-4 w-4" />}
+            </button>
             <p className="text-xs text-neutral-400 mt-3">
               <span className="line-through">$97</span> $47 &middot; 100% money-back guarantee
             </p>
@@ -236,20 +260,20 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
         <p className="text-neutral-500 text-sm mb-6">
           Less than the cost of one therapy session
         </p>
-        <a href={`/checkout?session=${sessionId}`}>
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full max-w-md mx-auto flex items-center justify-center gap-2 h-14 rounded-2xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-lg font-bold text-white"
-            style={{
-              boxShadow:
-                "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
-            }}
-          >
-            Get My Personalized Roadmap
-            <ArrowRight className="h-5 w-5" />
-          </motion.button>
-        </a>
+        <motion.button
+          onClick={handleCheckout}
+          disabled={checkoutLoading}
+          whileHover={!checkoutLoading ? { scale: 1.02 } : undefined}
+          whileTap={!checkoutLoading ? { scale: 0.98 } : undefined}
+          className="w-full max-w-md mx-auto flex items-center justify-center gap-2 h-14 rounded-2xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-lg font-bold text-white disabled:opacity-60"
+          style={{
+            boxShadow:
+              "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
+          }}
+        >
+          {checkoutLoading ? "Redirecting..." : "Get My Personalized Roadmap"}
+          {!checkoutLoading && <ArrowRight className="h-5 w-5" />}
+        </motion.button>
       </motion.div>
 
       {/* E. Trust Elements */}
@@ -332,20 +356,20 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
           <span className="line-through text-neutral-400">$97</span>{" "}
           <strong className="text-foreground">$47</strong>
         </p>
-        <a href={`/checkout?session=${sessionId}`}>
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center justify-center gap-2 px-10 h-14 rounded-2xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-lg font-bold text-white"
-            style={{
-              boxShadow:
-                "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
-            }}
-          >
-            Get My Personalized Roadmap
-            <ArrowRight className="h-5 w-5" />
-          </motion.button>
-        </a>
+        <motion.button
+          onClick={handleCheckout}
+          disabled={checkoutLoading}
+          whileHover={!checkoutLoading ? { scale: 1.02 } : undefined}
+          whileTap={!checkoutLoading ? { scale: 0.98 } : undefined}
+          className="inline-flex items-center justify-center gap-2 px-10 h-14 rounded-2xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-lg font-bold text-white disabled:opacity-60"
+          style={{
+            boxShadow:
+              "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
+          }}
+        >
+          {checkoutLoading ? "Redirecting..." : "Get My Personalized Roadmap"}
+          {!checkoutLoading && <ArrowRight className="h-5 w-5" />}
+        </motion.button>
       </motion.div>
     </div>
   );
