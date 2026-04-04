@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
       process.env.NEXT_PUBLIC_BASE_URL || "https://wheelofwellbeing.vercel.app";
 
     // Create Stripe Checkout session
+    const stripe = getStripe();
     const checkoutSession = await stripe.checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
