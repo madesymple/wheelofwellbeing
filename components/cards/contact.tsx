@@ -13,7 +13,7 @@ const Contact = (): JSX.Element => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center justify-center max-w-2xl text-center p-12 md:p-16 rounded-[35px] bg-gradient-to-b from-white to-warm-50 border border-neutral-100 relative overflow-hidden"
+        className="flex flex-col items-center justify-center w-full max-w-5xl text-center p-12 md:p-20 rounded-[35px] bg-gradient-to-b from-white to-warm-50 border border-neutral-100 relative overflow-hidden"
         style={{
           boxShadow:
             "0px 8px 30px rgba(0,0,0,0.04), 0px 1px 3px rgba(0,0,0,0.06)",
