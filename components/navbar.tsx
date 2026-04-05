@@ -24,7 +24,7 @@ const Navbar = (): React.ReactNode => {
           alt="Wheel of Wellbeing"
           width={160}
           height={40}
-          className="h-8 md:h-10 w-auto"
+          className="h-10 md:h-14 w-auto"
           priority
         />
       </Link>
