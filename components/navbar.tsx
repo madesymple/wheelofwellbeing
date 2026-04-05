@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
@@ -18,10 +19,14 @@ const Navbar = (): React.ReactNode => {
         href="/"
         className="flex gap-2 items-center mb-4 md:mb-0 cursor-pointer"
       >
-        <WheelIcon />
-        <span className="text-xl md:text-2xl font-heading font-bold tracking-tight text-foreground">
-          Wheel of Wellbeing
-        </span>
+        <Image
+          src="/assets/logo.png"
+          alt="Wheel of Wellbeing"
+          width={160}
+          height={40}
+          className="h-8 md:h-10 w-auto"
+          priority
+        />
       </Link>
       <div className="md:flex hidden items-center">
         <TakeQuizButton />
@@ -123,52 +128,3 @@ const TakeQuizButton = () => {
   );
 };
 
-const WheelIcon = () => (
-  <svg
-    width="36"
-    height="36"
-    viewBox="0 0 36 36"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="flex-shrink-0"
-  >
-    <circle cx="18" cy="18" r="16" stroke="#2A9D8F" strokeWidth="2" />
-    <circle cx="18" cy="18" r="4" fill="#2A9D8F" />
-    <line x1="18" y1="2" x2="18" y2="14" stroke="#E57373" strokeWidth="2" />
-    <line
-      x1="29.3"
-      y1="6.7"
-      x2="21.5"
-      y2="14.5"
-      stroke="#64B5F6"
-      strokeWidth="2"
-    />
-    <line x1="34" y1="18" x2="22" y2="18" stroke="#FFB74D" strokeWidth="2" />
-    <line
-      x1="29.3"
-      y1="29.3"
-      x2="21.5"
-      y2="21.5"
-      stroke="#F06292"
-      strokeWidth="2"
-    />
-    <line x1="18" y1="34" x2="18" y2="22" stroke="#81C784" strokeWidth="2" />
-    <line
-      x1="6.7"
-      y1="29.3"
-      x2="14.5"
-      y2="21.5"
-      stroke="#9575CD"
-      strokeWidth="2"
-    />
-    <line x1="2" y1="18" x2="14" y2="18" stroke="#4DB6AC" strokeWidth="2" />
-    <line
-      x1="6.7"
-      y1="6.7"
-      x2="14.5"
-      y2="14.5"
-      stroke="#A1887F"
-      strokeWidth="2"
-    />
-  </svg>
-);
