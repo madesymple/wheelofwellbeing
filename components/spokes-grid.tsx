@@ -12,6 +12,7 @@ import {
   Briefcase,
   Sparkles,
   Leaf,
+  Palette,
 } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -23,6 +24,7 @@ const iconMap: Record<string, React.ReactNode> = {
   briefcase: <Briefcase className="h-7 w-7" />,
   sparkles: <Sparkles className="h-7 w-7" />,
   leaf: <Leaf className="h-7 w-7" />,
+  palette: <Palette className="h-7 w-7" />,
 };
 
 const SpokesGrid = () => {
