@@ -5,11 +5,13 @@ import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Container className="md:px-11 px-2 pt-6">
-      <Navbar />
-      {children}
-      <Footer />
-    </Container>
+    <div style={{ background: "#FDF8F0", color: "#1A1A2E", minHeight: "100vh" }}>
+      <Container className="md:px-11 px-2 pt-6">
+        <Navbar />
+        {children}
+        <Footer />
+      </Container>
+    </div>
   );
 };
 

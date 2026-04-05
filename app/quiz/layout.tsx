@@ -7,7 +7,7 @@ export default function QuizLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen" style={{ background: "#FDF8F0", color: "#1A1A2E" }}>
       <header className="w-full px-4 md:px-11 py-4">
         <Link href="/" className="flex gap-2 items-center w-fit">
           <span className="text-xl font-heading font-bold tracking-tight text-foreground">
