@@ -223,7 +223,7 @@ function ResultsContent() {
           </p>
           <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
             <a
-              href="https://www.amazon.com/Balancing-WHEEL-balanced-approach-self-healing/dp/1790653622"
+              href="https://www.amazon.com/Balancing-WHEEL-self-healing-wholistic-fulfillment/dp/1794141278/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white rounded-2xl border border-neutral-100 overflow-hidden hover:border-neutral-200 transition-colors"
