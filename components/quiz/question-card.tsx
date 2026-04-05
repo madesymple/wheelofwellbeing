@@ -49,7 +49,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
       {/* Likert scale */}
       <div className="flex items-center justify-center gap-1">
         <span className="text-xs font-semibold text-[#D4956A] w-14 text-center shrink-0 hidden sm:block">
-          Agree
+          Disagree
         </span>
 
         <div className="flex items-center gap-1.5 md:gap-2.5">
@@ -96,7 +96,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
         </div>
 
         <span className="text-xs font-semibold text-[#8CC484] w-14 text-center shrink-0 hidden sm:block">
-          Disagree
+          Agree
         </span>
       </div>
     </div>
