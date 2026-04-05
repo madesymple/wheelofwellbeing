@@ -12,8 +12,8 @@ const Logo = () => {
         className="h-10 md:h-14 w-auto"
         priority
       />
-      <span className="text-[10px] md:text-xs font-semibold text-neutral-400 border border-neutral-200 rounded-full px-2 py-0.5 whitespace-nowrap">
-        Since 2009
+      <span className="text-[10px] md:text-[11px] font-bold text-brand/70 bg-brand/8 rounded-md px-2 py-1 whitespace-nowrap tracking-wide uppercase">
+        Est. 2009
       </span>
     </Link>
   );
