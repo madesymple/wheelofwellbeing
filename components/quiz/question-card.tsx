@@ -46,7 +46,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
       </p>
 
       {/* Likert scale */}
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-3 w-full">
         {/* Circles row */}
         <div className="flex items-center justify-center">
           {/* Disagree label — desktop only, beside circles */}
