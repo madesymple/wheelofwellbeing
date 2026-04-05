@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import ProgressBar from "@/components/quiz/progress-bar";
 import SpokePage from "@/components/quiz/spoke-page";
 import EmailCapture from "@/components/quiz/email-capture";
-import { SPOKE_ORDER, SPOKE_META } from "@/lib/scoring";
+import { SPOKE_ORDER } from "@/lib/scoring";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Question {
@@ -299,11 +299,9 @@ export default function QuizPage() {
           disabled={!allCurrentAnswered}
           className="flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-white disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
           style={{
-            backgroundColor: allCurrentAnswered
-              ? SPOKE_META[currentSpoke]?.color || "#2A9D8F"
-              : "#d4d4d4",
+            backgroundColor: allCurrentAnswered ? "#2A9D8F" : "#d4d4d4",
             boxShadow: allCurrentAnswered
-              ? `0px 4px 14px ${SPOKE_META[currentSpoke]?.color || "#2A9D8F"}40`
+              ? "0px 4px 14px rgba(42, 157, 143, 0.4)"
               : "none",
           }}
         >

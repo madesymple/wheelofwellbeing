@@ -3,7 +3,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import QuestionCard from "./question-card";
-import { SPOKE_META } from "@/lib/scoring";
 
 interface Question {
   id: string;
@@ -16,7 +15,7 @@ interface SpokePageProps {
   questions: Question[];
   answers: Record<string, number>;
   onAnswer: (questionId: string, value: number) => void;
-  direction: number; // -1 = going back, 1 = going forward
+  direction: number;
 }
 
 const SpokePage: React.FC<SpokePageProps> = ({
@@ -26,8 +25,6 @@ const SpokePage: React.FC<SpokePageProps> = ({
   onAnswer,
   direction,
 }) => {
-  const meta = SPOKE_META[spoke];
-
   return (
     <AnimatePresence mode="wait" custom={direction}>
       <motion.div
@@ -38,17 +35,7 @@ const SpokePage: React.FC<SpokePageProps> = ({
         exit={{ opacity: 0, x: direction * -80 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        {/* Spoke heading */}
-        <div className="text-center mb-6">
-          <h2
-            className="text-2xl md:text-3xl font-heading font-bold"
-            style={{ color: meta?.color }}
-          >
-            {meta?.label}
-          </h2>
-        </div>
-
-        {/* Questions card */}
+        {/* Questions card — no spoke heading */}
         <div
           className="bg-white rounded-[24px] border border-neutral-100 p-6 md:p-8"
           style={{
@@ -62,7 +49,6 @@ const SpokePage: React.FC<SpokePageProps> = ({
               questionText={q.text}
               selectedValue={answers[q.id] ?? null}
               onSelect={(value) => onAnswer(q.id, value)}
-              spokeColor={meta?.color || "#2A9D8F"}
             />
           ))}
         </div>
