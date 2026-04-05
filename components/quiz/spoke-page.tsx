@@ -30,10 +30,10 @@ const SpokePage: React.FC<SpokePageProps> = ({
       <motion.div
         key={spoke}
         custom={direction}
-        initial={{ opacity: 0, x: direction * 80 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: direction * -80 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25, ease: "easeInOut" }}
       >
         {/* Questions card — no spoke heading */}
         <div

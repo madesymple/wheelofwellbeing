@@ -8,7 +8,7 @@ export default function QuizLayout({
 }) {
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen overflow-x-hidden"
       style={{ background: "#FDF8F0", color: "#1A1A2E" }}
     >
       <header className="w-full px-4 md:px-11 py-4">

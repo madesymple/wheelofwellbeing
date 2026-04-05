@@ -12,13 +12,13 @@ interface QuestionCardProps {
 
 // Circle sizes: largest at extremes, smallest at neutral — more variance
 const CIRCLE_SIZES = [
-  "w-12 h-12 md:w-16 md:h-16", // 1 - Strongly Disagree (largest)
-  "w-10 h-10 md:w-14 md:h-14", // 2 - Disagree
-  "w-9 h-9 md:w-11 md:h-11",   // 3 - Somewhat Disagree
-  "w-7 h-7 md:w-8 md:h-8",     // 4 - Neutral (smallest)
-  "w-9 h-9 md:w-11 md:h-11",   // 5 - Somewhat Agree
-  "w-10 h-10 md:w-14 md:h-14", // 6 - Agree
-  "w-12 h-12 md:w-16 md:h-16", // 7 - Strongly Agree (largest)
+  "w-10 h-10 md:w-16 md:h-16", // 1 - Strongly Disagree (largest)
+  "w-9 h-9 md:w-14 md:h-14",   // 2 - Disagree
+  "w-8 h-8 md:w-11 md:h-11",   // 3 - Somewhat Disagree
+  "w-6 h-6 md:w-8 md:h-8",     // 4 - Neutral (smallest)
+  "w-8 h-8 md:w-11 md:h-11",   // 5 - Somewhat Agree
+  "w-9 h-9 md:w-14 md:h-14",   // 6 - Agree
+  "w-10 h-10 md:w-16 md:h-16", // 7 - Strongly Agree (largest)
 ];
 
 // Colors: orange for disagree, grey for neutral, green for agree

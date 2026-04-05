@@ -279,7 +279,7 @@ export default function QuizPage() {
       />
 
       {/* Navigation buttons */}
-      <div className="flex justify-between items-center mt-8">
+      <div className="flex justify-between items-center mt-8 pb-20">
         {currentSpokeIndex > 0 ? (
           <button
             onClick={handleBack}
