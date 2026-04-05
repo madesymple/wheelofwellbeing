@@ -23,9 +23,9 @@ const CIRCLE_SIZES = [
 
 // Colors: orange for disagree, grey for neutral, green for agree
 const CIRCLE_COLORS = {
-  disagree: { border: "#D9A87C", selected: "#D4956A" },
-  neutral: { border: "#C4C4C4", selected: "#A0A0A0" },
-  agree: { border: "#A8D4A0", selected: "#8CC484" },
+  disagree: { border: "#E8A96C", selected: "#E8A96C" },
+  neutral: { border: "#BFBFBF", selected: "#A0A0A0" },
+  agree: { border: "#A8E6A0", selected: "#A8E6A0" },
 };
 
 function getCircleColor(value: number) {
@@ -50,7 +50,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
         {/* Circles row */}
         <div className="flex items-center justify-center">
           {/* Disagree label — desktop only, beside circles */}
-          <span className="text-sm font-semibold text-[#D4956A] w-24 text-right pr-5 shrink-0 hidden md:block">
+          <span className="text-sm font-semibold text-[#E8A96C] w-24 text-right pr-5 shrink-0 hidden md:block">
             Disagree
           </span>
 
@@ -66,11 +66,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                   onClick={() => onSelect(value)}
                   title={label}
                   className={cn(
-                    "rounded-full border-2 transition-all duration-200 hover:scale-110 flex items-center justify-center",
+                    "rounded-full border-[2.5px] transition-all duration-200 hover:scale-110 flex items-center justify-center",
                     CIRCLE_SIZES[idx]
                   )}
                   style={{
-                    borderColor: isSelected ? colors.selected : colors.border + "80",
+                    borderColor: isSelected ? colors.selected : colors.border,
                     backgroundColor: isSelected ? colors.selected : "transparent",
                     boxShadow: isSelected
                       ? `0 0 0 3px ${colors.selected}25`
@@ -98,17 +98,17 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
           </div>
 
           {/* Agree label — desktop only, beside circles */}
-          <span className="text-sm font-semibold text-[#8CC484] w-24 text-left pl-5 shrink-0 hidden md:block">
+          <span className="text-sm font-semibold text-[#A8E6A0] w-24 text-left pl-5 shrink-0 hidden md:block">
             Agree
           </span>
         </div>
 
         {/* Mobile labels — below circles */}
         <div className="flex justify-between w-full px-2 md:hidden">
-          <span className="text-xs font-semibold text-[#D4956A]">
+          <span className="text-xs font-semibold text-[#E8A96C]">
             Disagree
           </span>
-          <span className="text-xs font-semibold text-[#8CC484]">
+          <span className="text-xs font-semibold text-[#A8E6A0]">
             Agree
           </span>
         </div>
