@@ -22,11 +22,11 @@ const CIRCLE_SIZES = [
   "w-10 h-10 md:w-12 md:h-12", // 7 - Strongly Agree (large)
 ];
 
-// Colors: reddish for disagree, grey for neutral, greenish for agree
+// Colors: orange for disagree, yellow for neutral, green for agree
 const CIRCLE_COLORS = {
-  disagree: { border: "#D4918E", bg: "#E8B4B1", selected: "#C27370" },
-  neutral: { border: "#C4C4C4", bg: "#D9D9D9", selected: "#A0A0A0" },
-  agree: { border: "#7BB89A", bg: "#A3D4B8", selected: "#5DA07E" },
+  disagree: { border: "#D9A87C", bg: "#E4BA94", selected: "#D4956A" },
+  neutral: { border: "#E8DC8C", bg: "#F0E8A0", selected: "#DDD06E" },
+  agree: { border: "#A8D4A0", bg: "#BCE8B4", selected: "#8CC484" },
 };
 
 function getCircleColor(value: number) {
@@ -48,7 +48,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
 
       {/* Likert scale */}
       <div className="flex items-center justify-center gap-1">
-        <span className="text-xs font-semibold text-[#C27370] w-14 text-center shrink-0 hidden sm:block">
+        <span className="text-xs font-semibold text-[#D4956A] w-14 text-center shrink-0 hidden sm:block">
           Agree
         </span>
 
@@ -95,7 +95,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
           })}
         </div>
 
-        <span className="text-xs font-semibold text-[#5DA07E] w-14 text-center shrink-0 hidden sm:block">
+        <span className="text-xs font-semibold text-[#8CC484] w-14 text-center shrink-0 hidden sm:block">
           Disagree
         </span>
       </div>
