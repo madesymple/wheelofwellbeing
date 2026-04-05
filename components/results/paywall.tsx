@@ -265,14 +265,14 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
           disabled={checkoutLoading}
           whileHover={!checkoutLoading ? { scale: 1.02 } : undefined}
           whileTap={!checkoutLoading ? { scale: 0.98 } : undefined}
-          className="w-full max-w-md mx-auto flex items-center justify-center gap-2 h-14 rounded-2xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-lg font-bold text-white disabled:opacity-60"
+          className="w-full max-w-md mx-auto flex items-center justify-center gap-2 h-14 rounded-2xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-base md:text-lg font-bold text-white disabled:opacity-60 whitespace-nowrap"
           style={{
             boxShadow:
               "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
           }}
         >
-          {checkoutLoading ? "Redirecting..." : "Get My Personalized Roadmap"}
-          {!checkoutLoading && <ArrowRight className="h-5 w-5" />}
+          {checkoutLoading ? "Redirecting..." : "Get My Roadmap — $47"}
+          {!checkoutLoading && <ArrowRight className="h-5 w-5 shrink-0" />}
         </motion.button>
       </motion.div>
 
@@ -361,14 +361,14 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
           disabled={checkoutLoading}
           whileHover={!checkoutLoading ? { scale: 1.02 } : undefined}
           whileTap={!checkoutLoading ? { scale: 0.98 } : undefined}
-          className="inline-flex items-center justify-center gap-2 px-10 h-14 rounded-2xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-lg font-bold text-white disabled:opacity-60"
+          className="w-full max-w-md mx-auto flex items-center justify-center gap-2 h-14 rounded-2xl border border-brand-dark bg-gradient-to-b from-brand-light to-brand text-base md:text-lg font-bold text-white disabled:opacity-60 whitespace-nowrap"
           style={{
             boxShadow:
               "0px 4px 14px rgba(42, 157, 143, 0.4), 0px 1px 3px rgba(0,0,0,0.1)",
           }}
         >
-          {checkoutLoading ? "Redirecting..." : "Get My Personalized Roadmap"}
-          {!checkoutLoading && <ArrowRight className="h-5 w-5" />}
+          {checkoutLoading ? "Redirecting..." : "Get My Roadmap — $47"}
+          {!checkoutLoading && <ArrowRight className="h-5 w-5 shrink-0" />}
         </motion.button>
       </motion.div>
     </div>
