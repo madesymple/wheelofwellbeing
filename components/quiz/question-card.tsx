@@ -10,15 +10,15 @@ interface QuestionCardProps {
   onSelect: (value: number) => void;
 }
 
-// Circle sizes: largest at extremes, smallest at neutral
+// Circle sizes: largest at extremes, smallest at neutral — more variance
 const CIRCLE_SIZES = [
-  "w-10 h-10 md:w-12 md:h-12", // 1 - Strongly Disagree (large)
-  "w-9 h-9 md:w-11 md:h-11",   // 2 - Disagree
-  "w-8 h-8 md:w-10 md:h-10",   // 3 - Somewhat Disagree
-  "w-6 h-6 md:w-7 md:h-7",     // 4 - Neutral (smallest)
-  "w-8 h-8 md:w-10 md:h-10",   // 5 - Somewhat Agree
-  "w-9 h-9 md:w-11 md:h-11",   // 6 - Agree
-  "w-10 h-10 md:w-12 md:h-12", // 7 - Strongly Agree (large)
+  "w-12 h-12 md:w-16 md:h-16", // 1 - Strongly Disagree (largest)
+  "w-10 h-10 md:w-14 md:h-14", // 2 - Disagree
+  "w-9 h-9 md:w-11 md:h-11",   // 3 - Somewhat Disagree
+  "w-7 h-7 md:w-8 md:h-8",     // 4 - Neutral (smallest)
+  "w-9 h-9 md:w-11 md:h-11",   // 5 - Somewhat Agree
+  "w-10 h-10 md:w-14 md:h-14", // 6 - Agree
+  "w-12 h-12 md:w-16 md:h-16", // 7 - Strongly Agree (largest)
 ];
 
 // Colors: orange for disagree, grey for neutral, green for agree
@@ -46,57 +46,72 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
       </p>
 
       {/* Likert scale */}
-      <div className="flex items-center justify-center">
-        <span className="text-sm font-semibold text-[#D4956A] w-20 text-right pr-4 shrink-0 hidden sm:block">
-          Disagree
-        </span>
+      <div className="flex flex-col items-center gap-3">
+        {/* Circles row */}
+        <div className="flex items-center justify-center">
+          {/* Disagree label — desktop only, beside circles */}
+          <span className="text-sm font-semibold text-[#D4956A] w-24 text-right pr-5 shrink-0 hidden md:block">
+            Disagree
+          </span>
 
-        <div className="flex items-center gap-1.5 md:gap-2.5">
-          {LIKERT_LABELS.map((label, idx) => {
-            const value = idx + 1;
-            const isSelected = selectedValue === value;
-            const colors = getCircleColor(value);
+          <div className="flex items-center gap-2.5 md:gap-4">
+            {LIKERT_LABELS.map((label, idx) => {
+              const value = idx + 1;
+              const isSelected = selectedValue === value;
+              const colors = getCircleColor(value);
 
-            return (
-              <button
-                key={value}
-                onClick={() => onSelect(value)}
-                title={label}
-                className={cn(
-                  "rounded-full border-2 transition-all duration-200 hover:scale-110 flex items-center justify-center",
-                  CIRCLE_SIZES[idx]
-                )}
-                style={{
-                  borderColor: isSelected ? colors.selected : colors.border + "80",
-                  backgroundColor: isSelected ? colors.selected : "transparent",
-                  boxShadow: isSelected
-                    ? `0 0 0 3px ${colors.selected}25`
-                    : "none",
-                }}
-              >
-                {isSelected && (
-                  <svg
-                    className="w-3 h-3 md:w-4 md:h-4 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={3}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                )}
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={value}
+                  onClick={() => onSelect(value)}
+                  title={label}
+                  className={cn(
+                    "rounded-full border-2 transition-all duration-200 hover:scale-110 flex items-center justify-center",
+                    CIRCLE_SIZES[idx]
+                  )}
+                  style={{
+                    borderColor: isSelected ? colors.selected : colors.border + "80",
+                    backgroundColor: isSelected ? colors.selected : "transparent",
+                    boxShadow: isSelected
+                      ? `0 0 0 3px ${colors.selected}25`
+                      : "none",
+                  }}
+                >
+                  {isSelected && (
+                    <svg
+                      className="w-3 h-3 md:w-4 md:h-4 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Agree label — desktop only, beside circles */}
+          <span className="text-sm font-semibold text-[#8CC484] w-24 text-left pl-5 shrink-0 hidden md:block">
+            Agree
+          </span>
         </div>
 
-        <span className="text-sm font-semibold text-[#8CC484] w-20 text-left pl-4 shrink-0 hidden sm:block">
-          Agree
-        </span>
+        {/* Mobile labels — below circles */}
+        <div className="flex justify-between w-full px-2 md:hidden">
+          <span className="text-xs font-semibold text-[#D4956A]">
+            Disagree
+          </span>
+          <span className="text-xs font-semibold text-[#8CC484]">
+            Agree
+          </span>
+        </div>
       </div>
     </div>
   );
