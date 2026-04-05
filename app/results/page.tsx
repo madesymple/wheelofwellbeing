@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { motion } from "motion/react";
 import { SPOKE_META, SPOKE_ORDER } from "@/lib/scoring";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen, UserCheck } from "lucide-react";
 import WheelChart from "@/components/results/wheel-chart";
 import Paywall from "@/components/results/paywall";
 
@@ -207,6 +207,70 @@ function ResultsContent() {
           spokeScores={result.spokeScores}
           sessionId={sessionId || ""}
         />
+
+        {/* Other Ways We Can Help */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="mt-16"
+        >
+          <p className="text-brand font-bold text-sm uppercase tracking-widest mb-6 text-center">
+            Other Ways We Can Help
+          </p>
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+            <a
+              href="https://www.amazon.com/Balancing-WHEEL-balanced-approach-self-healing/dp/1790653622"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-2xl border border-neutral-100 p-6 hover:border-neutral-200 transition-colors"
+              style={{
+                boxShadow:
+                  "0px 2px 10px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.04)",
+              }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-4">
+                <BookOpen className="h-5 w-5 text-brand" />
+              </div>
+              <h3 className="font-heading font-bold text-foreground mb-2">
+                Read the Book
+              </h3>
+              <p className="text-sm text-neutral-500 leading-relaxed mb-3">
+                Go deeper into the Wheel of Wellbeing methodology with Dr.
+                Sadigh&apos;s complete guide.
+              </p>
+              <span className="text-sm font-semibold text-brand">
+                Get it on Amazon &rarr;
+              </span>
+            </a>
+
+            <a
+              href="https://drsadigh.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-2xl border border-neutral-100 p-6 hover:border-neutral-200 transition-colors"
+              style={{
+                boxShadow:
+                  "0px 2px 10px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.04)",
+              }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-4">
+                <UserCheck className="h-5 w-5 text-brand" />
+              </div>
+              <h3 className="font-heading font-bold text-foreground mb-2">
+                Work with Dr. Sadigh
+              </h3>
+              <p className="text-sm text-neutral-500 leading-relaxed mb-3">
+                Ready for personalized guidance? Dr. Sadigh offers therapy
+                sessions to help you strengthen your weakest areas.
+              </p>
+              <span className="text-sm font-semibold text-brand">
+                Learn more &rarr;
+              </span>
+            </a>
+          </div>
+        </motion.div>
 
         {/* Retake link */}
         <motion.div
