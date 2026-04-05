@@ -70,16 +70,16 @@ export const spokes = [
     icon: "users",
   },
   {
-    name: "Financial",
-    description: "Your financial stability, habits, and security",
-    color: "#81C784",
-    icon: "wallet",
+    name: "Recreational",
+    description: "Your hobbies, leisure, sports, and creative activities",
+    color: "#9575CD",
+    icon: "palette",
   },
   {
-    name: "Professional",
-    description: "Your career fulfillment, growth, and purpose at work",
-    color: "#9575CD",
-    icon: "briefcase",
+    name: "Environmental",
+    description: "Your physical spaces, nature connection, and surroundings",
+    color: "#A1887F",
+    icon: "leaf",
   },
   {
     name: "Spiritual",
@@ -88,10 +88,10 @@ export const spokes = [
     icon: "sparkles",
   },
   {
-    name: "Environmental",
-    description: "Your physical spaces, nature connection, and surroundings",
-    color: "#A1887F",
-    icon: "leaf",
+    name: "Financial",
+    description: "Your financial stability, habits, and security",
+    color: "#81C784",
+    icon: "wallet",
   },
 ];
 

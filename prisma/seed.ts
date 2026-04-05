@@ -31,28 +31,28 @@ const questions = [
 
   // --- Intellectual / Mental ---
   {
-    spoke: "intellectual",
+    spoke: "mental",
     questionIndex: 0,
     text: "I plan ahead and create a blueprint for achieving success in every task.",
-    variantGroup: "intellectual_q0",
+    variantGroup: "mental_q0",
   },
   {
-    spoke: "intellectual",
+    spoke: "mental",
     questionIndex: 1,
     text: "I am able to focus and make decisions with clarity.",
-    variantGroup: "intellectual_q1",
+    variantGroup: "mental_q1",
   },
   {
-    spoke: "intellectual",
+    spoke: "mental",
     questionIndex: 2,
     text: "I have a clear vision of my goals, and I know what my next step is.",
-    variantGroup: "intellectual_q2",
+    variantGroup: "mental_q2",
   },
   {
-    spoke: "intellectual",
+    spoke: "mental",
     questionIndex: 3,
     text: "I like to keep my mind sharp and engaged by educating myself and learning new things.",
-    variantGroup: "intellectual_q3",
+    variantGroup: "mental_q3",
   },
 
   // --- Emotional ---
@@ -187,28 +187,28 @@ const questions = [
 
   // --- Recreation / Leisure ---
   {
-    spoke: "recreation",
+    spoke: "recreational",
     questionIndex: 0,
     text: "I regularly spend time in nature and enjoy outdoor activities alone or in groups.",
-    variantGroup: "recreation_q0",
+    variantGroup: "recreational_q0",
   },
   {
-    spoke: "recreation",
+    spoke: "recreational",
     questionIndex: 1,
     text: "I frequently take part in recreation, leisure, and sports activities.",
-    variantGroup: "recreation_q1",
+    variantGroup: "recreational_q1",
   },
   {
-    spoke: "recreation",
+    spoke: "recreational",
     questionIndex: 2,
     text: "Having hobbies and learning new subjects of interest plays an important role in my life.",
-    variantGroup: "recreation_q2",
+    variantGroup: "recreational_q2",
   },
   {
-    spoke: "recreation",
+    spoke: "recreational",
     questionIndex: 3,
     text: "I routinely attend arts and cultural activities.",
-    variantGroup: "recreation_q3",
+    variantGroup: "recreational_q3",
   },
 ];
 

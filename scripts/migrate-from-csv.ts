@@ -17,10 +17,10 @@ const CSV_PATH =
 
 const SPOKE_COLUMNS: Record<string, string> = {
   Physical: "physical",
-  Mental: "intellectual",
+  Mental: "mental",
   Emotional: "emotional",
   Relational: "relational",
-  Recreational: "recreation",
+  Recreational: "recreational",
   Environmental: "environmental",
   Spiritual: "spiritual",
   Financial: "financial",

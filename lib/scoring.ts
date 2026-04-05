@@ -79,17 +79,17 @@ export const LIKERT_LABELS = [
 
 /**
  * Spoke display order and metadata.
- * Names are placeholders — will be updated when user confirms final names.
+ * Confirmed order: Physical, Mental, Emotional, Relational, Recreational, Environmental, Spiritual, Financial
  */
 export const SPOKE_ORDER = [
   "physical",
-  "intellectual",
+  "mental",
   "emotional",
   "relational",
-  "financial",
-  "spiritual",
+  "recreational",
   "environmental",
-  "recreation",
+  "spiritual",
+  "financial",
 ] as const;
 
 export const SPOKE_META: Record<
@@ -97,15 +97,11 @@ export const SPOKE_META: Record<
   { label: string; color: string; icon: string }
 > = {
   physical: { label: "Physical", color: "#E57373", icon: "heart-pulse" },
-  intellectual: { label: "Intellectual", color: "#64B5F6", icon: "brain" },
+  mental: { label: "Mental", color: "#64B5F6", icon: "brain" },
   emotional: { label: "Emotional", color: "#FFB74D", icon: "smile" },
   relational: { label: "Relational", color: "#F06292", icon: "users" },
-  financial: { label: "Financial", color: "#81C784", icon: "wallet" },
+  recreational: { label: "Recreational", color: "#9575CD", icon: "palette" },
+  environmental: { label: "Environmental", color: "#A1887F", icon: "leaf" },
   spiritual: { label: "Spiritual", color: "#4DB6AC", icon: "sparkles" },
-  environmental: {
-    label: "Environmental",
-    color: "#A1887F",
-    icon: "leaf",
-  },
-  recreation: { label: "Recreation", color: "#9575CD", icon: "palette" },
+  financial: { label: "Financial", color: "#81C784", icon: "wallet" },
 };
