@@ -11,7 +11,6 @@ interface QuestionCardProps {
 }
 
 // Circle sizes: largest at extremes, smallest at neutral
-// 7 circles: SD, D, SwD, N, SwA, A, SA
 const CIRCLE_SIZES = [
   "w-10 h-10 md:w-12 md:h-12", // 1 - Strongly Disagree (large)
   "w-9 h-9 md:w-11 md:h-11",   // 2 - Disagree
@@ -22,11 +21,11 @@ const CIRCLE_SIZES = [
   "w-10 h-10 md:w-12 md:h-12", // 7 - Strongly Agree (large)
 ];
 
-// Colors: orange for disagree, yellow for neutral, green for agree
+// Colors: orange for disagree, grey for neutral, green for agree
 const CIRCLE_COLORS = {
-  disagree: { border: "#D9A87C", bg: "#E4BA94", selected: "#D4956A" },
-  neutral: { border: "#E8DC8C", bg: "#F0E8A0", selected: "#DDD06E" },
-  agree: { border: "#A8D4A0", bg: "#BCE8B4", selected: "#8CC484" },
+  disagree: { border: "#D9A87C", selected: "#D4956A" },
+  neutral: { border: "#C4C4C4", selected: "#A0A0A0" },
+  agree: { border: "#A8D4A0", selected: "#8CC484" },
 };
 
 function getCircleColor(value: number) {
@@ -42,13 +41,13 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
 }) => {
   return (
     <div className="py-7 border-b border-neutral-100 last:border-b-0">
-      <p className="text-foreground font-medium text-sm md:text-base mb-6 leading-relaxed text-center">
+      <p className="text-foreground font-medium text-base md:text-lg mb-6 leading-relaxed text-center">
         {questionText}
       </p>
 
       {/* Likert scale */}
-      <div className="flex items-center justify-center gap-1">
-        <span className="text-xs font-semibold text-[#D4956A] w-14 text-center shrink-0 hidden sm:block">
+      <div className="flex items-center justify-center">
+        <span className="text-sm font-semibold text-[#D4956A] w-20 text-right pr-4 shrink-0 hidden sm:block">
           Disagree
         </span>
 
@@ -95,7 +94,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
           })}
         </div>
 
-        <span className="text-xs font-semibold text-[#8CC484] w-14 text-center shrink-0 hidden sm:block">
+        <span className="text-sm font-semibold text-[#8CC484] w-20 text-left pl-4 shrink-0 hidden sm:block">
           Agree
         </span>
       </div>
