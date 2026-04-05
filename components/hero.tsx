@@ -26,46 +26,46 @@ export const Hero = () => {
       <div className="absolute -z-10 bottom-20 right-10 w-72 h-72 bg-spoke-mental/10 rounded-full blur-3xl" />
       <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
 
-      {/* Floating spoke pills */}
+      {/* Floating spoke pills — hidden on mobile to prevent overflow */}
       <FloatingSpoke
         color="#E57373"
         label="Physical"
-        className="absolute md:top-20 md:left-20 top-8 left-4 rotate-[-8deg]"
+        className="absolute md:top-20 md:left-20 top-6 left-3 rotate-[-8deg] hidden sm:block"
       />
       <FloatingSpoke
         color="#64B5F6"
         label="Mental"
-        className="absolute md:top-16 md:right-32 top-8 right-4 rotate-[6deg]"
+        className="absolute md:top-16 md:right-32 top-6 right-3 rotate-[6deg] hidden sm:block"
       />
       <FloatingSpoke
         color="#FFB74D"
         label="Emotional"
-        className="absolute md:bottom-48 md:left-16 bottom-36 left-4 rotate-[10deg]"
+        className="absolute md:bottom-48 md:left-16 bottom-36 left-4 rotate-[10deg] hidden md:block"
       />
       <FloatingSpoke
         color="#81C784"
         label="Financial"
-        className="absolute md:bottom-44 md:right-20 bottom-32 right-4 rotate-[-5deg]"
+        className="absolute md:bottom-44 md:right-20 bottom-32 right-4 rotate-[-5deg] hidden md:block"
       />
       <FloatingSpoke
         color="#F06292"
         label="Relational"
-        className="absolute md:top-40 md:left-8 top-24 -left-2 rotate-[14deg] hidden md:block"
+        className="absolute md:top-40 md:left-8 rotate-[14deg] hidden md:block"
       />
       <FloatingSpoke
         color="#9575CD"
         label="Professional"
-        className="absolute md:top-36 md:right-10 top-20 -right-2 rotate-[-10deg] hidden md:block"
+        className="absolute md:top-36 md:right-10 rotate-[-10deg] hidden md:block"
       />
       <FloatingSpoke
         color="#4DB6AC"
         label="Spiritual"
-        className="absolute md:bottom-32 md:left-40 bottom-20 left-20 rotate-[4deg] hidden lg:block"
+        className="absolute md:bottom-32 md:left-40 rotate-[4deg] hidden lg:block"
       />
       <FloatingSpoke
         color="#A1887F"
         label="Environmental"
-        className="absolute md:bottom-28 md:right-44 bottom-16 right-20 rotate-[-7deg] hidden lg:block"
+        className="absolute md:bottom-28 md:right-44 rotate-[-7deg] hidden lg:block"
       />
 
       <motion.div className="w-full h-full flex flex-col items-center justify-center relative z-10">

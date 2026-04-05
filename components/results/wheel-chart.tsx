@@ -11,11 +11,11 @@ interface WheelChartProps {
 
 const WheelChart: React.FC<WheelChartProps> = ({
   spokeScores,
-  size = 380,
+  size = 480,
 }) => {
   const center = size / 2;
-  const maxRadius = size * 0.36;
-  const labelRadius = size * 0.46;
+  const maxRadius = size * 0.28;
+  const labelRadius = size * 0.40;
   const numSpokes = SPOKE_ORDER.length;
 
   // Calculate angle for each spoke (starting from top, going clockwise)
@@ -57,7 +57,7 @@ const WheelChart: React.FC<WheelChartProps> = ({
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
-        className="w-full max-w-[380px] h-auto"
+        className="w-full max-w-[480px] h-auto mx-auto"
       >
         {/* Grid circles */}
         {gridLevels.map((level) => (
