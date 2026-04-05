@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "@/components/logo";
 
-export default function QuizLayout({
+export default function ResultsLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export default function QuizLayout({
       <header className="w-full px-4 md:px-11 py-4">
         <Logo />
       </header>
-      <main className="w-full max-w-3xl mx-auto px-4 pb-12">{children}</main>
+      {children}
     </div>
   );
 }

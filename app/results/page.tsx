@@ -99,8 +99,8 @@ function ResultsContent() {
   const lowest = sorted[sorted.length - 1];
 
   return (
-    <div className="min-h-screen bg-cream">
-      <div className="max-w-2xl mx-auto px-4 py-12">
+    <div>
+      <div className="max-w-2xl mx-auto px-4 pb-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

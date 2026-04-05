@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import Logo from "./logo";
 
 const Navbar = (): React.ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,19 +15,9 @@ const Navbar = (): React.ReactNode => {
 
   return (
     <motion.div className="relative w-full flex justify-between items-center">
-      <Link
-        href="/"
-        className="flex gap-2 items-center mb-4 md:mb-0 cursor-pointer"
-      >
-        <Image
-          src="/assets/logo.png"
-          alt="Wheel of Wellbeing"
-          width={160}
-          height={40}
-          className="h-10 md:h-14 w-auto"
-          priority
-        />
-      </Link>
+      <div className="mb-4 md:mb-0">
+        <Logo />
+      </div>
       <div className="md:flex hidden items-center">
         <TakeQuizButton />
       </div>
