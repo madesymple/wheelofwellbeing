@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
@@ -14,16 +14,41 @@ interface EmailCaptureProps {
   isLoading: boolean;
 }
 
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
 const EmailCapture: React.FC<EmailCaptureProps> = ({
   onSubmit,
   isLoading,
 }) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [dobMonth, setDobMonth] = useState("");
+  const [dobDay, setDobDay] = useState("");
+  const [dobYear, setDobYear] = useState("");
   const [marketingOptIn, setMarketingOptIn] = useState(false);
 
-  const isValid = email.includes("@") && dateOfBirth;
+  const currentYear = new Date().getFullYear();
+  const years = useMemo(() => {
+    const arr = [];
+    for (let y = currentYear - 10; y >= currentYear - 100; y--) {
+      arr.push(y);
+    }
+    return arr;
+  }, [currentYear]);
+
+  const daysInMonth = useMemo(() => {
+    if (!dobMonth || !dobYear) return 31;
+    return new Date(parseInt(dobYear), parseInt(dobMonth), 0).getDate();
+  }, [dobMonth, dobYear]);
+
+  const hasDob = dobMonth && dobDay && dobYear;
+  const dateOfBirth = hasDob
+    ? `${dobYear}-${dobMonth.padStart(2, "0")}-${dobDay.padStart(2, "0")}`
+    : "";
+  const isValid = email.includes("@") && hasDob;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +60,9 @@ const EmailCapture: React.FC<EmailCaptureProps> = ({
       marketingOptIn,
     });
   };
+
+  const selectClass =
+    "h-11 px-3 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand bg-white appearance-none";
 
   return (
     <motion.div
@@ -90,18 +118,65 @@ const EmailCapture: React.FC<EmailCaptureProps> = ({
           />
         </div>
 
-        {/* Date of birth */}
+        {/* Date of birth — dropdowns */}
         <div>
           <label className="block text-sm font-semibold text-foreground mb-1.5">
             Date of birth <span className="text-spoke-physical">*</span>
           </label>
-          <input
-            type="date"
-            required
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-            className="w-full h-11 px-4 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand bg-white"
-          />
+          <div className="grid grid-cols-3 gap-2">
+            {/* Month */}
+            <select
+              value={dobMonth}
+              onChange={(e) => setDobMonth(e.target.value)}
+              className={selectClass}
+              required
+            >
+              <option value="" disabled>
+                Month
+              </option>
+              {MONTHS.map((m, i) => (
+                <option key={m} value={String(i + 1)}>
+                  {m}
+                </option>
+              ))}
+            </select>
+
+            {/* Day */}
+            <select
+              value={dobDay}
+              onChange={(e) => setDobDay(e.target.value)}
+              className={selectClass}
+              required
+            >
+              <option value="" disabled>
+                Day
+              </option>
+              {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(
+                (d) => (
+                  <option key={d} value={String(d)}>
+                    {d}
+                  </option>
+                )
+              )}
+            </select>
+
+            {/* Year */}
+            <select
+              value={dobYear}
+              onChange={(e) => setDobYear(e.target.value)}
+              className={selectClass}
+              required
+            >
+              <option value="" disabled>
+                Year
+              </option>
+              {years.map((y) => (
+                <option key={y} value={String(y)}>
+                  {y}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Marketing opt-in */}
