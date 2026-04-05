@@ -1,4 +1,3 @@
-import { createHmac } from "crypto";
 import { cookies } from "next/headers";
 
 const COOKIE_NAME = "wow_admin_session";
@@ -8,23 +7,29 @@ function getSecret(): string {
   return process.env.ADMIN_SECRET || "fallback-dev-secret-change-me";
 }
 
-export function signToken(payload: string): string {
-  const hmac = createHmac("sha256", getSecret());
-  hmac.update(payload);
-  return `${payload}.${hmac.digest("hex")}`;
+async function hmacSign(payload: string, secret: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(payload));
+  return Array.from(new Uint8Array(sig))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
-export function verifyToken(token: string): boolean {
-  const lastDot = token.lastIndexOf(".");
-  if (lastDot === -1) return false;
-  const payload = token.substring(0, lastDot);
-  const expected = signToken(payload);
-  return token === expected;
+export async function signToken(payload: string): Promise<string> {
+  const sig = await hmacSign(payload, getSecret());
+  return `${payload}.${sig}`;
 }
 
 export async function setAdminCookie(): Promise<void> {
   const timestamp = Date.now().toString();
-  const token = signToken(timestamp);
+  const token = await signToken(timestamp);
   const cookieStore = await cookies();
   cookieStore.set(COOKIE_NAME, token, {
     httpOnly: true,
@@ -38,13 +43,6 @@ export async function setAdminCookie(): Promise<void> {
 export async function clearAdminCookie(): Promise<void> {
   const cookieStore = await cookies();
   cookieStore.delete(COOKIE_NAME);
-}
-
-export async function isAdminAuthenticated(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(COOKIE_NAME)?.value;
-  if (!token) return false;
-  return verifyToken(token);
 }
 
 export function verifyPassword(password: string): boolean {
