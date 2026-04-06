@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import "@/lib/gtag"; // GA4 global Window type declaration
 import { motion } from "motion/react";
 import { SPOKE_META, SPOKE_ORDER } from "@/lib/scoring";
 import {
@@ -31,8 +32,8 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
     setCheckoutLoading(true);
 
     // Track checkout initiation
-    if (typeof window !== "undefined" && typeof (window as unknown as Record<string, unknown>).gtag === "function") {
-      (window as unknown as Record<string, unknown> & { gtag: (...args: unknown[]) => void }).gtag("event", "begin_checkout", {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "begin_checkout", {
         value: 47,
         currency: "USD",
         items: [{ item_name: "Wellbeing Roadmap Report" }],

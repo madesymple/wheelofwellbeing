@@ -8,13 +8,7 @@ import SpokePage from "@/components/quiz/spoke-page";
 import EmailCapture from "@/components/quiz/email-capture";
 import { SPOKE_ORDER } from "@/lib/scoring";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-
-// GA4 event helper
-function trackEvent(eventName: string, params?: Record<string, string | number>) {
-  if (typeof window !== "undefined" && typeof (window as unknown as Record<string, unknown>).gtag === "function") {
-    (window as unknown as Record<string, unknown> & { gtag: (...args: unknown[]) => void }).gtag("event", eventName, params);
-  }
-}
+import { trackEvent } from "@/lib/gtag";
 
 interface Question {
   id: string;
