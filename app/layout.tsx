@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { Quicksand, Poppins, Inter } from "next/font/google";
 
@@ -38,18 +37,6 @@ export default function RootLayout({
         className={`${quicksand.variable} ${poppins.variable} font-body antialiased`}
       >
         {children}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-VBTTJ2QHVX"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-VBTTJ2QHVX');
-          `}
-        </Script>
       </body>
     </html>
   );
