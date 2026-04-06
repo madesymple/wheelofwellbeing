@@ -34,7 +34,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <head>
+      <body
+        className={`${quicksand.variable} ${poppins.variable} font-body antialiased`}
+      >
+        {children}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-VBTTJ2QHVX"
           strategy="afterInteractive"
@@ -47,11 +50,6 @@ export default function RootLayout({
             gtag('config', 'G-VBTTJ2QHVX');
           `}
         </Script>
-      </head>
-      <body
-        className={`${quicksand.variable} ${poppins.variable} font-body antialiased`}
-      >
-        {children}
       </body>
     </html>
   );
