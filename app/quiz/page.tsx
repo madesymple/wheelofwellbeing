@@ -9,6 +9,13 @@ import EmailCapture from "@/components/quiz/email-capture";
 import { SPOKE_ORDER } from "@/lib/scoring";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
+// GA4 event helper
+function trackEvent(eventName: string, params?: Record<string, string | number>) {
+  if (typeof window !== "undefined" && typeof (window as unknown as Record<string, unknown>).gtag === "function") {
+    (window as unknown as Record<string, unknown> & { gtag: (...args: unknown[]) => void }).gtag("event", eventName, params);
+  }
+}
+
 interface Question {
   id: string;
   questionIndex: number;
@@ -89,6 +96,7 @@ export default function QuizPage() {
       setUserId(data.userId);
       setQuestions(data.questions);
       setPhase("quiz");
+      trackEvent("quiz_start");
 
       saveToSession({
         sessionId: data.sessionId,
@@ -149,7 +157,14 @@ export default function QuizPage() {
 
   // Navigate to next spoke
   const handleNext = () => {
+    trackEvent("quiz_spoke_complete", {
+      spoke_name: currentSpoke,
+      spoke_number: currentSpokeIndex + 1,
+      spokes_total: activeSpokes.length,
+    });
+
     if (isLastSpoke) {
+      trackEvent("quiz_all_spokes_complete");
       setPhase("email");
     } else {
       setDirection(1);
@@ -199,6 +214,9 @@ export default function QuizPage() {
       });
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Failed to complete quiz");
+
+      // Track completion
+      trackEvent("quiz_complete");
 
       // Clear session storage
       sessionStorage.removeItem(SESSION_KEY);
