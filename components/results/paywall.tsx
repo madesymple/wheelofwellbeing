@@ -29,6 +29,16 @@ const Paywall: React.FC<PaywallProps> = ({ spokeScores, sessionId }) => {
   const handleCheckout = async () => {
     if (checkoutLoading) return;
     setCheckoutLoading(true);
+
+    // Track checkout initiation
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+      (window as any).gtag("event", "begin_checkout", {
+        value: 47,
+        currency: "USD",
+        items: [{ item_name: "Wellbeing Roadmap Report" }],
+      });
+    }
+
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
